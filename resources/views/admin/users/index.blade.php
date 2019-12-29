@@ -1,14 +1,42 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin users</title>
-</head>
-<body>
-<h1>Holla!</h1>
+@extends('layouts.admin')
 
-</body>
-</html>
+
+@section('content')
+    <h1>Users</h1>
+
+
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Updated</th>
+        </tr>
+        </thead>
+        @if($users)
+            <tbody>
+
+            @foreach($users as $user)
+
+                <tr>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->role->name}}</td>
+                    <td>{{$user->is_active ==0 ? 'Inactive' : 'Active' }}</td>
+                    <td>{{$user->created_at}}</td>
+                    <td>{{$user->updated_at}}</td>
+                </tr>
+
+                @endforeach
+            </tbody>
+
+            @endif
+
+    </table>
+
+    @endsection
