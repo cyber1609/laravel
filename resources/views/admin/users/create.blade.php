@@ -1,7 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+
+
     <h1>Create User</h1>
+
 
     {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files' => true]) !!}
 
@@ -30,9 +33,9 @@
         {!! Form::select('is_active', ['1' => 'Active', '0' => 'Inactive'], null, ['placeholder' => 'Pick a status', 'class'=>'form-control']) !!}
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-4">
         {!! Form::label('photo_id', 'Photo:') !!}
-        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+        {!! Form::file('photo_id', ['class'=>'form-control-file']) !!}
     </div>
 
 
@@ -42,8 +45,13 @@
         {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
     </div>
 
+    {!! Form::close() !!}
 
-    @include('includes.form_error')
 
+
+
+    <div class="row">
+        @include('includes.form_error')
+    </div>
 
     @endsection

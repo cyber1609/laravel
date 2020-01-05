@@ -4,6 +4,16 @@
 @section('content')
     <h1>Users</h1>
 
+    @if(Session::has('user_created'))
+        <p class="alert-info">{{session('user_created')}}</p>
+    @endif
+    @if(Session::has('user_updated'))
+        <p class="alert-success">{{session('user_updated')}}</p>
+    @endif
+    @if(Session::has('user_deleted'))
+        <p class="alert-danger">{{session('user_deleted')}}</p>
+    @endif
+
 
     <table class="table table-condensed">
         <thead>
@@ -25,7 +35,7 @@
 
                 <tr>
                     <td>{{$user->id}}</td>
-                    <td><img src="{{$user->photo? $user->photo->filename : '/images/users/nophoto.jpg'}}" alt="" height="50"></td>
+                    <td><img src="{{$user->photo? $user->photo->filename : '/images/nophoto.jpg'}}" alt="" height="50"></td>
                     <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role->name}}</td>
