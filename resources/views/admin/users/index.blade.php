@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Photo</th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -24,7 +25,8 @@
 
                 <tr>
                     <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
+                    <td><img src="{{$user->photo? $user->photo->filename : '/images/users/nophoto.jpg'}}" alt="" height="50"></td>
+                    <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role->name}}</td>
                     <td>{{$user->is_active ==0 ? 'Inactive' : 'Active' }}</td>
