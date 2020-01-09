@@ -47,7 +47,7 @@ class AdminPostsController extends Controller
     public function store(PostsCreateRequest $request)
     {
 
-        $user = Auth::user();
+//        $user = Auth::user();
 
         $input = $request->all();
 
@@ -58,7 +58,7 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
 
-        $post = $user->posts()->create($input);
+        $post = Auth::user()->posts()->create($input);
 
         session()->flash('post_created', 'Post '. $post->title. ' has been created');
 
@@ -105,8 +105,6 @@ class AdminPostsController extends Controller
     public function update(PostsCreateRequest $request, $id)
     {
 
-        $post = Post::findOrFail($id);
-
         $input = $request->all();
 
         if ($file = $request->file('photo_id')) {
@@ -116,10 +114,11 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
 
-        $input['user_id'] = Auth::user()->id;
 
-        $post->update($input);
-        session()->flash('post_updated', 'Post '. $post->title. ' has been updated');
+
+        $post = Auth::user()->posts()->whereId($id)->first()->update($input);
+
+        session()->flash('post_updated', 'Post '. $post['title']. ' has been updated');
 
         return redirect('/admin/posts');
 
@@ -141,8 +140,6 @@ class AdminPostsController extends Controller
         if (isset($post->photo->filename)){
             unlink(public_path(). $post->photo->filename);
         }
-
-
 
         session()->flash('post_deleted', 'Post '. $post->title. ' has been deleted!');
 

@@ -28,7 +28,6 @@
         {!! Form::file('photo_id', ['class'=>'form-control-file']) !!}
     </div>
 
-
     <div class="form-group">
         {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
     </div>

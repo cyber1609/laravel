@@ -39,9 +39,9 @@
                     <td>{{$post->id}}</td>
                     <td><img src="{{$post->photo? $post->photo->filename : '/images/nophoto.jpg'}}" alt="" height="50"></td>
                     <td>{{$post->user->name}}</td>
-                    <td>{{$post->category->name}}</td>
+                    <td>{{$post->category? $post->category->name : 'Uncategorized'}}</td>
                     <td><a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</a></td>
-                    <td>{{$post->body}}</td>
+                    <td>{{Str::limit($post->body, 30)}}</td>
                     <td>{{$post->created_at}}</td>
                     <td>{{$post->updated_at}}</td>
                 </tr>
