@@ -3,6 +3,8 @@
 
 <head>
 
+    @yield('styles')
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -140,9 +142,9 @@
                                 <a href="{{route('posts.index')}}">All Posts</a>
                             </li>
 
-{{--                            <li>--}}
-{{--                                <a href="{{route('posts.create')}}">Create Post</a>--}}
-{{--                            </li>--}}
+                            <li>
+                                <a href="{{route('posts.create')}}">Create Post</a>
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -156,9 +158,9 @@
                                 <a href="{{route('categories.index')}}">All Categories</a>
                             </li>
 
-                            <li>
-                                <a href="{{route('categories.create')}}">Create Category</a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <a href="{{route('categories.create')}}">Create Category</a>--}}
+{{--                            </li>--}}
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -169,11 +171,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('media.index')}}">All Media</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="{{route('media.create')}}">Upload Media</a>
                             </li>
 
                         </ul>
@@ -349,6 +351,8 @@
 
 
 @yield('footer')
+
+@yield('scripts')
 
 
 
