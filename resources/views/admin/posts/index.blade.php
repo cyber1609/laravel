@@ -25,6 +25,7 @@
             <th>Category</th>
             <th>Title</th>
             <th>Body</th>
+            <th>Comments</th>
             <th>Created</th>
             <th>Updated</th>
         </tr>
@@ -38,10 +39,17 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td><img src="{{$post->photo? $post->photo->filename : '/images/nophoto.jpg'}}" alt="" height="50"></td>
-                    <td>{{$post->user->name}}</td>
+                    <td>
+                        @if($post->user)
+                            <a href="{{route('users.edit', $post->user->id)}}">{{$post->user->name}}</a>
+                        @else
+                            N/A
+                        @endif
+                    </td>
                     <td>{{$post->category? $post->category->name : 'Uncategorized'}}</td>
                     <td><a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</a></td>
                     <td>{{Str::limit($post->body, 30)}}</td>
+                    <td><a href="{{route('comments.show', $post->id)}}">View comments</a></td>
                     <td>{{$post->created_at}}</td>
                     <td>{{$post->updated_at}}</td>
                 </tr>
